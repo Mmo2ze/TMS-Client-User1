@@ -11,7 +11,7 @@ export class AuthService {
      const headers = new HttpHeaders();
      headers.set('Content-Type', 'application/json; charset=utf-8');
      console.log('auth service');
-    let response = firstValueFrom(http.get('http://api.tass.ist/api/v2/Auth/myRoles',{ withCredentials: true }));
+    let response = firstValueFrom(http.get('https://api.tass.ist/api/v2/Auth/myRoles',{ withCredentials: true }));
       response.then((value) => {
       console.log(value);
     }).catch((error) => {
@@ -23,7 +23,7 @@ export class AuthService {
 
 
 
-  private baseUrl = 'http://api.tass.ist'
+  private baseUrl = 'https://api.tass.ist'
   myRoles :string[]= [];
   token :string = '';
   login(phone:string){
