@@ -1,0 +1,13 @@
+@if (status==='login'){
+<form (ngSubmit)="login()">
+
+  <input type="text" name="phone" [(ngModel)]="phone">
+  <button type="submit"> Login</button>
+</form>
+} @else if (status === 'verify'){
+<form (ngSubmit)="verify()">
+
+  <input  type="number" name="code" [(ngModel)]="code">
+  <button type="submit"> Verify</button>
+  </form>
+}
