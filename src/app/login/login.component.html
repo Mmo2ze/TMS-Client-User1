@@ -1,13 +1,44 @@
-@if (status==='login'){
-<form (ngSubmit)="login()">
 
-  <input type="text" name="phone" [(ngModel)]="phone">
-  <button type="submit"> Login</button>
-</form>
-} @else if (status === 'verify'){
-<form (ngSubmit)="verify()">
-
-  <input  type="number" name="code" [(ngModel)]="code">
-  <button type="submit"> Verify</button>
-  </form>
+@for(message of this.messages;track message.statusCode){
+  <h1 class="{{message.status == 'error'?'text-red-600':message.status== 'warning'?'text-yellow-300':'text-green-400'}}">{{message.message}}</h1>
 }
+
+<div class="flex items-center justify-center flex-col h-[70dvh] w-screen">
+
+@if(this.auth.state.user()==null)
+{
+  <p>   Loading...</p>
+}
+
+
+
+
+
+@else if (this.auth.state.user() == 'none') {
+<app-login-intro ></app-login-intro>
+} @else  {
+  @switch (this.status()) {
+    @case ('login') {
+      <form (ngSubmit)="login()">
+        <input name="phone" type="text" [(ngModel)]="phone"  />
+        <button [disabled]="isLoading()" type="submit">Login</button>
+      </form>
+    }
+    @case ('verify') {
+      <form (ngSubmit)="verify()">
+        <input name="phone" type="text" [(ngModel)]="code" />
+        <button type="submit">verify</button>
+      </form>
+    }
+    @case ('register') {
+      <form>
+        <input name="name" type="text" />
+        <button type="submit">Register</button>
+      </form>
+    }
+    @default {
+      <h1>Logged in</h1>
+    }
+  }
+}
+</div>

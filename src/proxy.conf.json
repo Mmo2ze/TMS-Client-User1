@@ -1,6 +1,6 @@
 {
-  "/api": {
-    "target": "https://api.tass.ist",
-    "secure": true
-  }
+    "/api": {
+        "target": "https://api.tass.ist",
+        "secure": true
+    }
 }
